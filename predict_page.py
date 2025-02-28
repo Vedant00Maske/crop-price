@@ -58,7 +58,7 @@ def predict():
         """, unsafe_allow_html=True)
     
     st.title("Crop Price Prediction")
-    st.image("crop_price_image.jpg", use_container_width=True)
+    st.image("crop_price_image.jpg")
 
     st.write("Please choose from the following:")
     com = ('Bhindi(Ladies Finger)', 'Brinjal', 'Cabbage', 'Cauliflower',
