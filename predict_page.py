@@ -14,9 +14,52 @@ le_s = deploy['le_s']
 le_d = deploy['le_d']
 le_m = deploy['le_m']
 
+st.set_page_config(page_title="Crop Price Prediction", layout="centered")
+
 def predict():
-    st.backgroundColor = 'blue'
+    st.markdown("""
+        <style>
+        .stApp {
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            font-family: 'Arial', sans-serif;
+        }
+        .stButton>button {
+            background-color: #A27B5C;
+            color: white;
+            border-radius: 8px;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .stButton>button:hover {
+            background-color: #8B5E3C;
+        }
+        .stSelectbox, .stSlider {
+            background-color: #3F4F44;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+        }
+        .stSlider > div > div > div > div {
+            background-color: #9DC08B;
+        }
+        .stImage > img {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            height: auto;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+    
     st.title("Crop Price Prediction")
+    st.image("crop_price_image.jpg", use_container_width=True)
+
     st.write("Please choose from the following:")
     com = ('Bhindi(Ladies Finger)', 'Brinjal', 'Cabbage', 'Cauliflower',
         'Coriander(Leaves)', 'Ginger(Green)', 'Green Chilli', 'Guar', 'Lemon',
@@ -160,4 +203,8 @@ def predict():
         X[:,2] = le_d.fit_transform(X[:,2])
         X[:,3] = le_m.fit_transform(X[:,3])
         calc = regressor.predict(X)
-        st.subheader(f'The estimated price is Rs.{calc[0]:.2f} per Kg')
+        st.markdown(f"""
+        <div style="background-color: #3F4F44; padding: 20px; border-radius: 10px; text-align: center;">
+            <h2 style="color: #9DC08B;">The estimated price is Rs.{calc[0]:.2f} per Kg</h2>
+        </div>
+        """, unsafe_allow_html=True)
